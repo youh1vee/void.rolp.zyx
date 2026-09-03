@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0316">
+<title>VOID CORE — Characters / TV Mans</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#07020d;
+  --text:#faf3ff;
+  --muted:#b09bb9;
+  --purple:#a855f7;
+  --violet:#7c3aed;
+  --magenta:#d946ef;
+  --border:rgba(191,102,255,.19)
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 72% 10%,rgba(151,40,255,.20),transparent 28%),
+    radial-gradient(circle at 88% 75%,rgba(217,70,239,.11),transparent 25%),
+    radial-gradient(circle at 18% 90%,rgba(105,20,190,.14),transparent 30%),
+    var(--bg);
+  overflow-x:hidden
+}
+
+a{
+  color:inherit;
+  text-decoration:none
+}
+
+#space{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-3
+}
+
+#space:before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(ellipse at 28% 30%,rgba(145,45,255,.18),transparent 35%),
+    radial-gradient(ellipse at 78% 62%,rgba(218,60,255,.12),transparent 32%);
+  filter:blur(32px);
+  animation:nebula 18s ease-in-out infinite alternate
+}
+
+#stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.72) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(213,130,255,.55) 0 1px,transparent 1.5px);
+  background-size:97px 113px,151px 173px;
+  background-position:10px 20px,40px 80px;
+  opacity:.22;
+  animation:stars 35s linear infinite
+}
+
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.13
+}
+
+.orb.a{
+  width:55vw;
+  height:55vw;
+  background:#8b2cff;
+  left:-18%;
+  top:18%;
+  animation:floatA 14s ease-in-out infinite
+}
+
+.orb.b{
+  width:48vw;
+  height:48vw;
+  background:#d52cff;
+  right:-20%;
+  top:42%;
+  animation:floatB 17s ease-in-out infinite
+}
+
+@keyframes nebula{
+  to{transform:translate(4%,3%) scale(1.08)}
+}
+
+@keyframes stars{
+  to{background-position:110px 100px,0 0}
+}
+
+@keyframes floatA{
+  50%{transform:translate(10vw,4vh) scale(1.12)}
+}
+
+@keyframes floatB{
+  50%{transform:translate(-7vw,-3vh) scale(1.08)}
+}
+
+.sidebar{
+  position:fixed;
+  left:18px;
+  top:18px;
+  bottom:18px;
+  width:238px;
+  padding:22px 16px;
+  border:1px solid var(--border);
+  background:rgba(18,3,28,.67);
+  backdrop-filter:blur(22px);
+  border-radius:28px;
+  box-shadow:0 20px 70px rgba(0,0,0,.42);
+  z-index:10;
+  display:flex;
+  flex-direction:column
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:4px 8px 24px
+}
+
+.brand-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#e9a7ff,#9d35ff 60%,#5410a5);
+  box-shadow:0 0 28px rgba(190,70,255,.35);
+  position:relative
+}
+
+.brand-mark:after{
+  content:"";
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#fff;
+  left:14px;
+  top:14px;
+  box-shadow:0 0 14px #fff
+}
+
+.brand strong{
+  font-size:14px;
+  letter-spacing:.13em
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+  letter-spacing:.16em
+}
+
+.nav-label{
+  font-size:9px;
+  color:#80648c;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  padding:0 10px 9px
+}
+
+.nav{
+  display:grid;
+  gap:6px
+}
+
+.nav a{
+  padding:11px 12px;
+  border-radius:13px;
+  color:#b29dbb;
+  font-size:12px;
+  transition:.25s
+}
+
+.nav a:hover,
+.nav a.active{
+  color:#fcf2ff;
+  background:linear-gradient(
+    90deg,
+    rgba(168,85,247,.18),
+    rgba(217,70,239,.07)
+  );
+  border:1px solid rgba(190,100,255,.13);
+  transform:translateX(3px)
+}
+
+.nav a.active{
+  box-shadow:inset 2px 0 0 var(--purple)
+}
+
+.side-bottom{
+  margin-top:auto;
+  padding:13px 11px;
+  border-radius:16px;
+  border:1px solid rgba(190,100,255,.11);
+  background:rgba(39,8,54,.46)
+}
+
+.side-bottom span{
+  font-size:9px;
+  color:#80658b;
+  text-transform:uppercase;
+  letter-spacing:.13em
+}
+
+.side-bottom p{
+  font-size:11px;
+  color:#d0b9d9;
+  margin-top:6px
+}
+
+main{
+  margin-left:280px;
+  padding:30px 42px 60px;
+  max-width:1500px
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:42px
+}
+
+.crumb{
+  font-size:11px;
+  color:#806d89
+}
+
+.crumb b{
+  color:#e7c9f5
+}
+
+.top-actions{
+  display:flex;
+  gap:9px
+}
+
+.pill{
+  border:1px solid rgba(190,100,255,.13);
+  background:rgba(36,10,51,.55);
+  color:#c3a9cc;
+  border-radius:12px;
+  padding:9px 12px;
+  font-size:11px
+}
+
+.hero{
+  padding:38px 0 30px
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#d08aff;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-bottom:15px
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#c55cff;
+  box-shadow:0 0 14px #c55cff
+}
+
+h1{
+  font-size:clamp(42px,6vw,78px);
+  line-height:.94;
+  letter-spacing:-.055em;
+  background:linear-gradient(
+    110deg,
+    #fff7ff 15%,
+    #e0a4ff 46%,
+    #a43aff 90%
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+
+.hero p{
+  max-width:650px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.75;
+  margin-top:20px
+}
+
+.section-line{
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    rgba(190,90,255,.28),
+    transparent
+  );
+  margin:10px 0 24px
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:16px
+}
+
+.section-head h2{
+  font-size:18px
+}
+
+.section-head span{
+  font-size:10px;
+  color:#80648c;
+  text-transform:uppercase;
+  letter-spacing:.13em
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px
+}
+
+.card{
+  position:relative;
+  min-height:390px;
+  padding:18px;
+  border-radius:24px;
+  border:1px solid transparent;
+  background:linear-gradient(
+    145deg,
+    rgba(47,12,65,.63),
+    rgba(19,4,28,.55)
+  );
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+  transition:.35s
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(196,100,255,.34);
+  box-shadow:0 22px 65px rgba(130,0,190,.18)
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(178,55,255,.14);
+  filter:blur(35px);
+  right:-65px;
+  top:-65px
+}
+
+.visual{
+  height:230px;
+  border-radius:18px;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(193,83,255,.18),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(66,16,88,.65),
+      rgba(16,2,25,.75)
+    );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative
+}
+
+.visual img{
+  width:112%;
+  height:112%;
+  object-fit:contain;
+  position:relative;
+  z-index:1;
+  filter:drop-shadow(
+    0 12px 25px rgba(190,70,255,.25)
+  );
+  transition:.45s
+}
+
+.card:hover .visual img{
+  transform:scale(1.12)
+}
+
+.visual:after{
+  content:"TV UNIT";
+  position:absolute;
+  bottom:12px;
+  left:13px;
+  font-size:8px;
+  letter-spacing:.2em;
+  color:rgba(229,187,255,.4)
+}
+
+.titan .visual img{
+  width:118%;
+  height:118%
+}
+
+.info{
+  padding:17px 2px 2px
+}
+
+.id{
+  font-size:9px;
+  color:#a35cc1;
+  letter-spacing:.16em
+}
+
+.info h3{
+  font-size:19px;
+  margin:6px 0
+}
+
+.info p{
+  font-size:11px;
+  line-height:1.6;
+  color:#a88db1
+}
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:13px
+}
+
+.tag{
+  font-size:9px;
+  padding:6px 8px;
+  border-radius:9px;
+  background:rgba(168,85,247,.11);
+  color:#d89bff;
+  border:1px solid rgba(190,100,255,.13)
+}
+
+.status{
+  font-size:9px;
+  color:#806489
+}
+
+.special-voted .visual img{
+  width:118%;
+  height:118%
+}
+
+.page-navigation{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:42px;
+  padding:16px;
+  border:1px solid rgba(190,100,255,.12);
+  background:rgba(27,6,38,.48);
+  backdrop-filter:blur(16px);
+  border-radius:18px
+}
+
+.page-button{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-width:150px;
+  padding:13px 16px;
+  border:1px solid rgba(190,100,255,.12);
+  background:rgba(43,10,57,.55);
+  border-radius:14px;
+  transition:.3s
+}
+
+.page-button:hover{
+  transform:translateY(-3px);
+  border-color:rgba(205,110,255,.4);
+  background:rgba(58,14,76,.7);
+  box-shadow:0 10px 35px rgba(150,0,220,.13)
+}
+
+.page-button span{
+  font-size:8px;
+  color:#856392;
+  letter-spacing:.18em
+}
+
+.page-button strong{
+  font-size:11px;
+  color:#e1adff
+}
+
+.page-current{
+  font-size:9px;
+  color:#76567f;
+  letter-spacing:.16em;
+  text-transform:uppercase
+}
+
+.footer{
+  margin-top:50px;
+  color:#62476b;
+  font-size:10px;
+  text-align:center
+}
+
+@media(max-width:1000px){
+  .sidebar{width:205px}
+  main{margin-left:235px;padding:25px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:720px){
+  .sidebar{
+    left:10px;
+    right:10px;
+    bottom:10px;
+    top:auto;
+    width:auto;
+    height:65px;
+    padding:8px 10px;
+    border-radius:20px
+  }
+
+  .brand,.nav-label,.side-bottom{display:none}
+
+  .nav{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:100%
+  }
+
+  .nav a{
+    font-size:10px;
+    padding:9px
+  }
+
+  .nav a:nth-child(n+5){display:none}
+
+  main{
+    margin-left:0;
+    padding:22px 18px 100px
+  }
+
+  .top-actions{display:none}
+  .hero{padding-top:18px}
+  .grid{grid-template-columns:1fr}
+  h1{font-size:48px}
+
+  .page-navigation{
+    gap:8px;
+    padding:10px
+  }
+
+  .page-button{
+    min-width:0;
+    flex:1;
+    padding:11px
+  }
+
+  .page-current{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div id="space">
+  <div id="stars"></div>
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+</div>
+
+<aside class="sidebar">
+
+<a class="brand" href="index.html">
+  <div class="brand-mark"></div>
+
+  <div>
+    <strong>VOID CORE</strong>
+    <small>CHARACTER ARCHIVE</small>
+  </div>
+</a>
+
+<div class="nav-label">Navegación</div>
+
+<nav class="nav">
+  <a href="index.html">Inicio</a>
+  <a href="seasons.html">Temporadas</a>
+  <a href="episodes.html">Episodios</a>
+  <a href="characters.html" class="active">Personajes</a>
+  <a href="lore.html">Lore</a>
+  <a href="archive.html">Archivo</a>
+</nav>
+
+<div class="side-bottom">
+  <span>Registro actual</span>
+  <p>TV Man Division · 007–009</p>
+</div>
+
+</aside>
+
+<main>
+
+<div class="topbar">
+
+  <div class="crumb">
+    VOID CORE / <b>CHARACTERS</b> / TV MANS
+  </div>
+
+  <div class="top-actions">
+    <div class="pill">DIVISION 03</div>
+    <div class="pill">SYSTEM ONLINE</div>
+  </div>
+
+</div>
+
+<section class="hero">
+
+<div class="eyebrow">
+  <i class="dot"></i>
+  Página 03 · TV Mans
+</div>
+
+<h1>
+  TV Man<br>
+  Division.
+</h1>
+
+<p>
+  Registro de las unidades TV Man conocidas dentro del universo.
+  Una división especializada en tecnología de pantalla, control visual
+  y operaciones de alto nivel.
+</p>
+
+</section>
+
+<div class="section-line"></div>
+
+<div class="section-head">
+  <h2>Unidades registradas</h2>
+  <span>3 entradas · página 03</span>
+</div>
+
+<section class="grid">
+
+<!-- TV MAN -->
+
+<article class="card">
+
+<div class="visual">
+  <div style="
+    color:#d88cff;
+    font-size:9px;
+    letter-spacing:.16em;
+    text-align:center
+  ">
+    IMAGE<br>
+    TV MAN
+  </div>
+</div>
+
+<div class="info">
+
+  <div class="id">
+    CHARACTER 007
+  </div>
+
+  <h3>
+    TV Man
+  </h3>
+
+  <p>
+    Unidad estándar de la división TV Man.
+    Especializada en tecnología de pantalla y control visual.
+  </p>
+
+  <div class="meta">
+    <span class="tag">TV MAN</span>
+    <span class="status">ACTIVE</span>
+  </div>
+
+</div>
+
+</article>
+
+<!-- LARGE TV MAN -->
+
+<article class="card">
+
+<div class="visual">
+  <div style="
+    color:#d88cff;
+    font-size:9px;
+    letter-spacing:.16em;
+    text-align:center
+  ">
+    IMAGE<br>
+    LARGE TV MAN
+  </div>
+</div>
+
+<div class="info">
+
+  <div class="id">
+    CHARACTER 008
+  </div>
+
+  <h3>
+    Large TV Man
+  </h3>
+
+  <p>
+    Variante de mayor tamaño y resistencia,
+    desarrollada para operaciones de mayor escala.
+  </p>
+
+  <div class="meta">
+    <span class="tag">LARGE UNIT</span>
+    <span class="status">ACTIVE</span>
+  </div>
+
+</div>
+
+</article>
+
+<!-- TITAN TV MAN -->
+
+<article class="card titan">
+
+<div class="visual">
+  <div style="
+    color:#d88cff;
+    font-size:9px;
+    letter-spacing:.16em;
+    text-align:center
+  ">
+    IMAGE<br>
+    TITAN TV MAN
+  </div>
+</div>
+
+<div class="info">
+
+  <div class="id">
+    CHARACTER 009
+  </div>
+
+  <h3>
+    Titan TV Man
+  </h3>
+
+  <p>
+    Unidad Titan de la división TV Man.
+    Una de las fuerzas de mayor nivel dentro de la división.
+  </p>
+
+  <div class="meta">
+    <span class="tag">TITAN</span>
+    <span class="status">ARCHIVED</span>
+  </div>
+
+</div>
+
+</article>
+
+</section>
+
+<div class="section-line" style="margin-top:42px"></div>
+
+<div class="section-head">
+
+  <h2>
+    Special Voted
+  </h2>
+
+  <span>
+    1 entrada · categoría especial
+  </span>
+
+</div>
+
+<section class="grid">
+
+<!-- SHIRO -->
+
+<article class="card special-voted">
+
+<div class="visual">
+
+  <div style="
+    color:#d88cff;
+    font-size:9px;
+    letter-spacing:.16em;
+    text-align:center
+  ">
+    IMAGE<br>
+    SHIRO
+  </div>
+
+</div>
+
+<div class="info">
+
+  <div class="id">
+    SPECIAL VOTED 003
+  </div>
+
+  <h3>
+    Shiro
+  </h3>
+
+  <p>
+    Personaje seleccionado dentro de la categoría
+    Special Voted.
+  </p>
+
+  <div class="meta">
+
+    <span class="tag">
+      SPECIAL VOTED
+    </span>
+
+    <span class="status">
+      REGISTERED
+    </span>
+
+  </div>
+
+</div>
+
+</article>
+
+</section>
+
+<div class="page-navigation">
+
+<a class="page-button" href="speakermans.html">
+  <span>PREVIOUS PAGE</span>
+  <strong>← Page 02</strong>
+</a>
+
+<div class="page-current">
+  Page 03 / 03
+</div>
+
+</div>
+
+<div class="footer">
+  VOID CORE · Character Archive · TV Man Division
+</div>
+
+</main>
+
+<script>
+
+document.querySelectorAll('.card').forEach(card=>{
+
+  card.addEventListener('pointermove',e=>{
+
+    const r=card.getBoundingClientRect();
+
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+
+    card.style.transform=
+      `perspective(800px)
+       rotateX(${(-y*3).toFixed(2)}deg)
+       rotateY(${(x*4).toFixed(2)}deg)
+       translateY(-7px)`;
+
+  });
+
+  card.addEventListener('pointerleave',()=>{
+    card.style.transform='';
+  });
+
+});
+
+</script>
+
+</body>
+</html>

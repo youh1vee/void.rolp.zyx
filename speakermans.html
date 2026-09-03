@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160404">
+<title>VOID CORE — Characters / Speakermans</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#090202;
+  --text:#fff3f3;
+  --muted:#b99a9a;
+  --red:#ff3030;
+  --crimson:#e20d28;
+  --border:rgba(255,76,76,.18)
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  min-height:100vh;
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 72% 10%,rgba(255,30,30,.19),transparent 28%),
+    radial-gradient(circle at 88% 75%,rgba(255,0,40,.10),transparent 25%),
+    radial-gradient(circle at 18% 90%,rgba(180,0,35,.13),transparent 30%),
+    var(--bg);
+  overflow-x:hidden
+}
+
+a{color:inherit;text-decoration:none}
+
+#space{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:-3
+}
+
+#space:before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(ellipse at 28% 30%,rgba(255,30,30,.17),transparent 35%),
+    radial-gradient(ellipse at 78% 62%,rgba(255,50,80,.11),transparent 32%);
+  filter:blur(32px);
+  animation:nebula 18s ease-in-out infinite alternate
+}
+
+#stars{
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.72) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,95,95,.55) 0 1px,transparent 1.5px);
+  background-size:97px 113px,151px 173px;
+  background-position:10px 20px,40px 80px;
+  opacity:.22;
+  animation:stars 35s linear infinite
+}
+
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:.12
+}
+
+.orb.a{
+  width:55vw;height:55vw;
+  background:#ff1717;
+  left:-18%;top:18%;
+  animation:floatA 14s ease-in-out infinite
+}
+
+.orb.b{
+  width:48vw;height:48vw;
+  background:#ff174f;
+  right:-20%;top:42%;
+  animation:floatB 17s ease-in-out infinite
+}
+
+@keyframes nebula{to{transform:translate(4%,3%) scale(1.08)}}
+@keyframes stars{to{background-position:110px 100px,0 0}}
+@keyframes floatA{50%{transform:translate(10vw,4vh) scale(1.12)}}
+@keyframes floatB{50%{transform:translate(-7vw,-3vh) scale(1.08)}}
+
+.sidebar{
+  position:fixed;
+  left:18px;top:18px;bottom:18px;
+  width:238px;
+  padding:22px 16px;
+  border:1px solid var(--border);
+  background:rgba(25,3,3,.67);
+  backdrop-filter:blur(22px);
+  border-radius:28px;
+  box-shadow:0 20px 70px rgba(0,0,0,.42);
+  z-index:10;
+  display:flex;
+  flex-direction:column
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:4px 8px 24px
+}
+
+.brand-mark{
+  width:38px;height:38px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#ff8a8a,#ff2020 60%,#85000f);
+  box-shadow:0 0 28px rgba(255,50,50,.32);
+  position:relative
+}
+
+.brand-mark:after{
+  content:"";
+  position:absolute;
+  width:10px;height:10px;
+  border-radius:50%;
+  background:#fff;
+  left:14px;top:14px;
+  box-shadow:0 0 14px #fff
+}
+
+.brand strong{font-size:14px;letter-spacing:.13em}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+  letter-spacing:.16em
+}
+
+.nav-label{
+  font-size:9px;
+  color:#926464;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  padding:0 10px 9px
+}
+
+.nav{display:grid;gap:6px}
+
+.nav a{
+  padding:11px 12px;
+  border-radius:13px;
+  color:#bca0a0;
+  font-size:12px;
+  transition:.25s
+}
+
+.nav a:hover,
+.nav a.active{
+  color:#fff3f3;
+  background:linear-gradient(90deg,rgba(255,48,48,.16),rgba(255,90,90,.06));
+  border:1px solid rgba(255,80,80,.12);
+  transform:translateX(3px)
+}
+
+.nav a.active{box-shadow:inset 2px 0 0 var(--red)}
+
+.side-bottom{
+  margin-top:auto;
+  padding:13px 11px;
+  border-radius:16px;
+  border:1px solid rgba(255,80,80,.11);
+  background:rgba(47,7,7,.46)
+}
+
+.side-bottom span{
+  font-size:9px;
+  color:#916666;
+  text-transform:uppercase;
+  letter-spacing:.13em
+}
+
+.side-bottom p{
+  font-size:11px;
+  color:#dfbaba;
+  margin-top:6px
+}
+
+main{
+  margin-left:280px;
+  padding:30px 42px 60px;
+  max-width:1500px
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:42px
+}
+
+.crumb{font-size:11px;color:#916f6f}
+.crumb b{color:#ffd0d0}
+
+.top-actions{display:flex;gap:9px}
+
+.pill{
+  border:1px solid rgba(255,80,80,.13);
+  background:rgba(45,9,9,.55);
+  color:#c9a3a3;
+  border-radius:12px;
+  padding:9px 12px;
+  font-size:11px
+}
+
+.hero{padding:38px 0 30px}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#ff8b8b;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-bottom:15px
+}
+
+.dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 14px var(--red)
+}
+
+h1{
+  font-size:clamp(42px,6vw,78px);
+  line-height:.94;
+  letter-spacing:-.055em;
+  background:linear-gradient(110deg,#fff5f5 15%,#ff9a9a 46%,#ff2525 90%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+
+.hero p{
+  max-width:650px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.75;
+  margin-top:20px
+}
+
+.section-line{
+  height:1px;
+  background:linear-gradient(90deg,rgba(255,70,70,.28),transparent);
+  margin:10px 0 24px
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-bottom:16px
+}
+
+.section-head h2{font-size:18px}
+
+.section-head span{
+  font-size:10px;
+  color:#8c6666;
+  text-transform:uppercase;
+  letter-spacing:.13em
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px
+}
+
+.card{
+  position:relative;
+  min-height:390px;
+  padding:18px;
+  border-radius:24px;
+  border:1px solid transparent;
+  background:linear-gradient(145deg,rgba(59,10,10,.63),rgba(25,4,4,.55));
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+  transition:.35s
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(255,80,80,.32);
+  box-shadow:0 22px 65px rgba(190,0,25,.18)
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:180px;height:180px;
+  border-radius:50%;
+  background:rgba(255,30,30,.13);
+  filter:blur(35px);
+  right:-65px;top:-65px
+}
+
+.visual{
+  height:230px;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(255,65,65,.17),transparent 35%),
+    linear-gradient(145deg,rgba(76,12,12,.65),rgba(20,2,2,.75));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative
+}
+
+.visual img{
+  width:112%;
+  height:112%;
+  object-fit:contain;
+  position:relative;
+  z-index:1;
+  filter:drop-shadow(0 12px 25px rgba(255,30,30,.24));
+  transition:.45s
+}
+
+.card:hover .visual img{transform:scale(1.12)}
+
+.visual:after{
+  content:"SPEAKER UNIT";
+  position:absolute;
+  bottom:12px;
+  left:13px;
+  font-size:8px;
+  letter-spacing:.2em;
+  color:rgba(255,180,180,.4)
+}
+
+.titan .visual img{
+  width:118%;
+  height:118%
+}
+
+.info{padding:17px 2px 2px}
+
+.id{
+  font-size:9px;
+  color:#a95454;
+  letter-spacing:.16em
+}
+
+.info h3{font-size:19px;margin:6px 0}
+
+.info p{
+  font-size:11px;
+  line-height:1.6;
+  color:#a98787
+}
+
+.meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:13px
+}
+
+.tag{
+  font-size:9px;
+  padding:6px 8px;
+  border-radius:9px;
+  background:rgba(255,40,40,.10);
+  color:#ff9999;
+  border:1px solid rgba(255,90,90,.12)
+}
+
+.status{font-size:9px;color:#896565}
+
+.special-voted .visual img{
+  width:118%;
+  height:118%
+}
+
+.page-navigation{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:42px;
+  padding:16px;
+  border:1px solid rgba(255,80,80,.12);
+  background:rgba(35,5,5,.48);
+  backdrop-filter:blur(16px);
+  border-radius:18px
+}
+
+.page-button{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-width:150px;
+  padding:13px 16px;
+  border:1px solid rgba(255,80,80,.12);
+  background:rgba(55,9,9,.55);
+  border-radius:14px;
+  transition:.3s
+}
+
+.page-button:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,80,80,.38);
+  background:rgba(75,13,13,.7);
+  box-shadow:0 10px 35px rgba(220,0,30,.12)
+}
+
+.page-button.next{text-align:right}
+
+.page-button span{
+  font-size:8px;
+  color:#8c5b5b;
+  letter-spacing:.18em
+}
+
+.page-button strong{
+  font-size:11px;
+  color:#ffb1b1
+}
+
+.page-current{
+  font-size:9px;
+  color:#805757;
+  letter-spacing:.16em;
+  text-transform:uppercase
+}
+
+.footer{
+  margin-top:50px;
+  color:#674848;
+  font-size:10px;
+  text-align:center
+}
+
+@media(max-width:1000px){
+  .sidebar{width:205px}
+  main{margin-left:235px;padding:25px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media(max-width:720px){
+  .sidebar{
+    left:10px;right:10px;bottom:10px;top:auto;
+    width:auto;height:65px;
+    padding:8px 10px;
+    border-radius:20px
+  }
+
+  .brand,.nav-label,.side-bottom{display:none}
+
+  .nav{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    height:100%
+  }
+
+  .nav a{font-size:10px;padding:9px}
+  .nav a:nth-child(n+5){display:none}
+
+  main{
+    margin-left:0;
+    padding:22px 18px 100px
+  }
+
+  .top-actions{display:none}
+  .hero{padding-top:18px}
+  .grid{grid-template-columns:1fr}
+  h1{font-size:48px}
+
+  .page-navigation{
+    gap:8px;
+    padding:10px
+  }
+
+  .page-button{
+    min-width:0;
+    flex:1;
+    padding:11px
+  }
+
+  .page-current{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div id="space">
+  <div id="stars"></div>
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+</div>
+
+<aside class="sidebar">
+
+<a class="brand" href="index.html">
+  <div class="brand-mark"></div>
+  <div>
+    <strong>VOID CORE</strong>
+    <small>CHARACTER ARCHIVE</small>
+  </div>
+</a>
+
+<div class="nav-label">Navegación</div>
+
+<nav class="nav">
+  <a href="index.html">Inicio</a>
+  <a href="seasons.html">Temporadas</a>
+  <a href="episodes.html">Episodios</a>
+  <a href="characters.html" class="active">Personajes</a>
+  <a href="lore.html">Lore</a>
+  <a href="archive.html">Archivo</a>
+</nav>
+
+<div class="side-bottom">
+  <span>Registro actual</span>
+  <p>Speakerman Division · 004–006</p>
+</div>
+
+</aside>
+
+<main>
+
+<div class="topbar">
+  <div class="crumb">
+    VOID CORE / <b>CHARACTERS</b> / SPEAKERMANS
+  </div>
+
+  <div class="top-actions">
+    <div class="pill">DIVISION 02</div>
+    <div class="pill">SYSTEM ONLINE</div>
+  </div>
+</div>
+
+<section class="hero">
+
+<div class="eyebrow">
+  <i class="dot"></i>
+  Página 02 · Speakermans
+</div>
+
+<h1>
+  Speakerman<br>
+  Division.
+</h1>
+
+<p>
+  Registro de las unidades Speakerman conocidas dentro del universo.
+  Una división especializada en combate, potencia sonora y operaciones
+  de alta intensidad.
+</p>
+
+</section>
+
+<div class="section-line"></div>
+
+<div class="section-head">
+  <h2>Unidades registradas</h2>
+  <span>3 entradas · página 02</span>
+</div>
+
+<section class="grid">
+
+<article class="card">
+<div class="visual">
+  <div style="color:#ff7777;font-size:9px;letter-spacing:.16em">
+    IMAGE<br>SPEAKERMAN
+  </div>
+</div>
+
+<div class="info">
+  <div class="id">CHARACTER 004</div>
+  <h3>Speakerman</h3>
+  <p>Unidad estándar de la división Speakerman. Especializada en operaciones de combate y emisión sonora.</p>
+
+  <div class="meta">
+    <span class="tag">SPEAKERMAN</span>
+    <span class="status">ACTIVE</span>
+  </div>
+</div>
+</article>
+
+<article class="card">
+<div class="visual">
+  <div style="color:#ff7777;font-size:9px;letter-spacing:.16em">
+    IMAGE<br>LARGE SPEAKERMAN
+  </div>
+</div>
+
+<div class="info">
+  <div class="id">CHARACTER 005</div>
+  <h3>Large Speakerman</h3>
+  <p>Variante de mayor escala y resistencia, diseñada para enfrentamientos de mayor intensidad.</p>
+
+  <div class="meta">
+    <span class="tag">LARGE UNIT</span>
+    <span class="status">ACTIVE</span>
+  </div>
+</div>
+</article>
+
+<article class="card titan">
+<div class="visual">
+  <div style="color:#ff7777;font-size:9px;letter-spacing:.16em">
+    IMAGE<br>TITAN SPEAKERMAN
+  </div>
+</div>
+
+<div class="info">
+  <div class="id">CHARACTER 006</div>
+  <h3>Titan Speakerman</h3>
+  <p>Unidad Titan de la división Speakerman. Una de las principales fuerzas de combate de la división.</p>
+
+  <div class="meta">
+    <span class="tag">TITAN</span>
+    <span class="status">ARCHIVED</span>
+  </div>
+</div>
+</article>
+
+</section>
+
+<div class="section-line" style="margin-top:42px"></div>
+
+<div class="section-head">
+  <h2>Special Voted</h2>
+  <span>1 entrada · categoría especial</span>
+</div>
+
+<section class="grid">
+
+<article class="card special-voted">
+
+<div class="visual">
+  <div style="color:#ff7777;font-size:9px;letter-spacing:.16em">
+    IMAGE<br>RAY
+  </div>
+</div>
+
+<div class="info">
+  <div class="id">SPECIAL VOTED 002</div>
+  <h3>Ray</h3>
+  <p>Personaje seleccionado dentro de la categoría Special Voted.</p>
+
+  <div class="meta">
+    <span class="tag">SPECIAL VOTED</span>
+    <span class="status">REGISTERED</span>
+  </div>
+</div>
+
+</article>
+
+</section>
+
+<div class="page-navigation">
+
+<a class="page-button" href="characters.html">
+  <span>PREVIOUS PAGE</span>
+  <strong>← Page 01</strong>
+</a>
+
+<div class="page-current">
+  Page 02 / 03
+</div>
+
+<a class="page-button next" href="tvmen.html">
+  <span>NEXT PAGE</span>
+  <strong>Page 03 →</strong>
+</a>
+
+</div>
+
+<div class="footer">
+  VOID CORE · Character Archive · Speakerman Division
+</div>
+
+</main>
+
+<script>
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+
+    card.style.transform=
+      `perspective(800px)
+       rotateX(${(-y*3).toFixed(2)}deg)
+       rotateY(${(x*4).toFixed(2)}deg)
+       translateY(-7px)`;
+  });
+
+  card.addEventListener('pointerleave',()=>{
+    card.style.transform='';
+  });
+});
+</script>
+
+</body>
+</html>

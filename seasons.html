@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08051a">
+<title>VOID CORE — Temporadas</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#05030d;
+    --panel:rgba(19,13,39,.46);
+    --panel-strong:rgba(24,16,49,.72);
+    --border:rgba(190,150,255,.15);
+    --text:#f7f3ff;
+    --muted:#a69bbd;
+    --purple:#9b5cff;
+    --violet:#6f42ff;
+    --pink:#ff55c8;
+    --blue:#4c9dff;
+    --cyan:#5de8ff;
+    --radius:24px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:var(--text);
+    font-family:Inter,system-ui,sans-serif;
+    background:
+        radial-gradient(circle at 72% 12%,rgba(120,65,255,.20),transparent 28%),
+        radial-gradient(circle at 90% 75%,rgba(255,55,191,.13),transparent 25%),
+        radial-gradient(circle at 25% 90%,rgba(40,126,255,.12),transparent 28%),
+        var(--bg);
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+
+/* =========================================================
+   SPACE
+========================================================= */
+
+#space{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-3;
+}
+
+#space::before{
+    content:"";
+    position:absolute;
+    inset:-20%;
+    background:
+        radial-gradient(ellipse at 30% 30%,rgba(127,64,255,.15),transparent 35%),
+        radial-gradient(ellipse at 75% 65%,rgba(255,54,202,.12),transparent 32%),
+        radial-gradient(ellipse at 55% 90%,rgba(58,144,255,.12),transparent 30%);
+    filter:blur(30px);
+    animation:nebula 18s ease-in-out infinite alternate;
+}
+
+#stars{
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.75) 0 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(157,111,255,.55) 0 1px,transparent 1.5px);
+    background-size:97px 113px,151px 173px;
+    background-position:10px 20px,40px 80px;
+    opacity:.22;
+    animation:stars 35s linear infinite;
+}
+
+.aurora{
+    position:absolute;
+    width:55vw;
+    height:55vw;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.13;
+    mix-blend-mode:screen;
+}
+
+.aurora.a{
+    background:#7c3cff;
+    left:-18%;
+    top:18%;
+    animation:floatA 14s ease-in-out infinite;
+}
+
+.aurora.b{
+    background:#ff39c8;
+    right:-20%;
+    top:42%;
+    animation:floatB 17s ease-in-out infinite;
+}
+
+.aurora.c{
+    background:#2d9cff;
+    left:28%;
+    bottom:-35%;
+    animation:floatC 20s ease-in-out infinite;
+}
+
+@keyframes nebula{
+    to{
+        transform:translate(4%,3%) scale(1.08);
+    }
+}
+
+@keyframes stars{
+    to{
+        background-position:110px 100px,0 0;
+    }
+}
+
+@keyframes floatA{
+    50%{
+        transform:translate(10vw,4vh) scale(1.12);
+    }
+}
+
+@keyframes floatB{
+    50%{
+        transform:translate(-8vw,-6vh) scale(.92);
+    }
+}
+
+@keyframes floatC{
+    50%{
+        transform:translate(5vw,-5vh) scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:260px minmax(0,1fr);
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+    position:fixed;
+    left:18px;
+    top:18px;
+    bottom:18px;
+    width:230px;
+    padding:20px 14px;
+
+    display:flex;
+    flex-direction:column;
+
+    border:1px solid var(--border);
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28,18,55,.68),
+            rgba(8,7,20,.48)
+        );
+
+    backdrop-filter:blur(28px) saturate(145%);
+    -webkit-backdrop-filter:blur(28px) saturate(145%);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.4),
+        inset 0 1px rgba(255,255,255,.06);
+
+    z-index:20;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:4px 8px 22px;
+}
+
+.brand-mark{
+    width:38px;
+    height:38px;
+    border-radius:13px;
+
+    display:grid;
+    place-items:center;
+
+    font-weight:800;
+    font-size:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b4cff,
+            #ff55c8
+        );
+
+    box-shadow:0 0 24px rgba(154,82,255,.38);
+    cursor:pointer;
+}
+
+.brand strong{
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.brand small{
+    display:block;
+    color:#8d81a6;
+    font-size:8px;
+    letter-spacing:2px;
+    margin-top:3px;
+}
+
+.nav-label{
+    color:#716584;
+    font-size:8px;
+    letter-spacing:2.5px;
+    padding:10px 10px 8px;
+    text-transform:uppercase;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.nav a,
+.nav button{
+    width:100%;
+    border:0;
+    background:transparent;
+
+    color:#9e93b2;
+    text-align:left;
+
+    padding:11px 12px;
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-size:11px;
+    cursor:pointer;
+
+    transition:.25s ease;
+}
+
+.nav a:hover,
+.nav button:hover,
+.nav a.active{
+    color:#fff;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(145,77,255,.20),
+            rgba(255,75,205,.07)
+        );
+
+    box-shadow:inset 2px 0 var(--purple);
+    transform:translateX(2px);
+}
+
+.nav-icon{
+    width:17px;
+    text-align:center;
+    font-size:13px;
+}
+
+.sidebar-spacer{
+    flex:1;
+}
+
+.sidebar-status{
+    padding:12px;
+
+    border:1px solid rgba(180,140,255,.10);
+    border-radius:16px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.status-line{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    font-size:9px;
+    color:#9e93b2;
+}
+
+.status-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+
+    background:#75ffc5;
+    box-shadow:0 0 12px #75ffc5;
+}
+
+.sidebar-footer{
+    font-size:8px;
+    color:#615672;
+    letter-spacing:1.5px;
+    padding:14px 8px 0;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main{
+    grid-column:2;
+
+    width:min(1180px,calc(100% - 70px));
+    margin:0 auto;
+
+    padding:34px 0 70px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:38px;
+}
+
+.breadcrumb{
+    font-size:9px;
+    letter-spacing:2.5px;
+    color:#756a8a;
+    text-transform:uppercase;
+}
+
+.search-btn{
+    border:1px solid var(--border);
+
+    color:#a99ebc;
+    background:rgba(255,255,255,.035);
+
+    padding:10px 14px;
+    border-radius:13px;
+
+    cursor:pointer;
+
+    display:flex;
+    gap:10px;
+    align-items:center;
+
+    transition:.25s;
+}
+
+.search-btn:hover{
+    color:#fff;
+    border-color:rgba(194,147,255,.35);
+    transform:translateY(-2px);
+}
+
+.key{
+    font-size:8px;
+    color:#6f6480;
+
+    border:1px solid rgba(255,255,255,.1);
+    padding:3px 5px;
+    border-radius:5px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.page-header{
+    position:relative;
+    padding:30px 5px 42px;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    color:#b79ed8;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    margin-bottom:15px;
+}
+
+.eyebrow::before{
+    content:"";
+
+    width:22px;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--pink)
+        );
+}
+
+.page-header h1{
+    font-size:clamp(58px,8vw,105px);
+    line-height:.82;
+    letter-spacing:-6px;
+    font-weight:800;
+
+    background:
+        linear-gradient(
+            105deg,
+            #fff 12%,
+            #d8c6ff 45%,
+            #a66aff 72%,
+            #ff65ce
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+
+    text-shadow:0 15px 60px rgba(125,65,255,.12);
+}
+
+.page-header p{
+    max-width:650px;
+
+    margin-top:22px;
+
+    color:#9387a7;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.header-line{
+    width:100%;
+    height:1px;
+
+    margin-top:38px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(190,140,255,.18),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.seasons-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+
+    margin:0 4px 14px;
+}
+
+.seasons-head h2{
+    font-size:13px;
+    font-weight:600;
+}
+
+.seasons-head span{
+    font-size:8px;
+    letter-spacing:2px;
+    color:#665b78;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   SEASONS
+========================================================= */
+
+.seasons{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+
+/* =========================================================
+   SEASON CARD
+========================================================= */
+
+.season-card{
+    position:relative;
+
+    min-height:285px;
+
+    display:grid;
+    grid-template-columns:minmax(0,1.55fr) minmax(310px,.85fr);
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28,19,51,.58),
+            rgba(10,8,22,.48)
+        );
+
+    backdrop-filter:blur(20px) saturate(140%);
+    -webkit-backdrop-filter:blur(20px) saturate(140%);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.055),
+        0 15px 50px rgba(0,0,0,.18);
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.season-card:hover{
+    transform:translateY(-6px);
+
+    border-color:rgba(190,130,255,.30);
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.08),
+        0 25px 65px rgba(91,38,180,.20);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.season-image{
+    position:relative;
+
+    min-height:285px;
+
+    overflow:hidden;
+
+    background:#090612;
+}
+
+.season-image img{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    display:block;
+
+    transform:scale(1.01);
+
+    transition:
+        transform .65s cubic-bezier(.2,.8,.2,1),
+        filter .65s ease;
+}
+
+.season-card:hover .season-image img{
+    transform:scale(1.055);
+}
+
+
+/* DARK GRADIENT OVER IMAGE */
+
+.season-image::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 35%,
+            rgba(8,5,18,.08) 48%,
+            rgba(8,5,18,.52) 70%,
+            rgba(8,5,18,.94) 100%
+        );
+
+    pointer-events:none;
+}
+
+
+/* MOBILE IMAGE GRADIENT */
+
+@media(max-width:900px){
+
+    .season-image::after{
+        background:
+            linear-gradient(
+                0deg,
+                rgba(8,5,18,.92),
+                rgba(8,5,18,.10) 65%,
+                transparent
+            );
+    }
+}
+
+
+/* =========================================================
+   SEASON NUMBER
+========================================================= */
+
+.season-number{
+    position:absolute;
+
+    left:20px;
+    top:18px;
+
+    z-index:5;
+
+    padding:7px 9px;
+
+    border:1px solid rgba(190,140,255,.18);
+    border-radius:9px;
+
+    background:rgba(7,5,17,.55);
+
+    backdrop-filter:blur(12px);
+
+    color:#c1b2d8;
+
+    font-size:8px;
+    letter-spacing:1.5px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.2);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.season-content{
+    position:relative;
+    z-index:3;
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.season-status{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:#756a86;
+
+    font-size:7px;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+
+    margin-bottom:12px;
+}
+
+.season-status::before{
+    content:"";
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#75ffc5;
+    box-shadow:0 0 10px #75ffc5;
+}
+
+.season-card h3{
+    font-size:32px;
+    font-weight:600;
+    letter-spacing:-1px;
+}
+
+.season-description{
+    max-width:420px;
+
+    margin-top:9px;
+
+    color:#817692;
+
+    font-size:9px;
+    line-height:1.75;
+}
+
+.season-info{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+
+    margin-top:22px;
+}
+
+.info-box{
+    padding:10px 12px;
+
+    border:1px solid rgba(190,140,255,.10);
+    border-radius:11px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.info-box small{
+    display:block;
+
+    color:#625773;
+
+    font-size:7px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+    margin-bottom:4px;
+}
+
+.info-box strong{
+    color:#b8acc8;
+
+    font-size:10px;
+    font-weight:500;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.season-arrow{
+    position:absolute;
+
+    right:22px;
+    top:20px;
+
+    z-index:5;
+
+    font-size:18px;
+    color:#786b8d;
+
+    transition:.3s;
+}
+
+.season-card:hover .season-arrow{
+    color:#fff;
+    transform:translate(4px,-3px);
+}
+
+
+/* =========================================================
+   CURRENT SEASON
+========================================================= */
+
+.season-card.current{
+    border-color:rgba(155,92,255,.25);
+}
+
+.season-card.current .season-status{
+    color:#a98bd0;
+}
+
+.season-card.current .season-status::before{
+    background:#b76cff;
+    box-shadow:0 0 13px #a85cff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    margin-top:45px;
+    padding:18px 5px;
+
+    border-top:1px solid rgba(180,140,255,.09);
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#554b65;
+
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+    place-items:start center;
+
+    padding-top:13vh;
+
+    background:rgba(4,2,12,.66);
+
+    backdrop-filter:blur(18px);
+}
+
+.search-overlay.open{
+    display:grid;
+    animation:fade .2s ease;
+}
+
+.search-box{
+    width:min(650px,calc(100% - 30px));
+
+    border:1px solid rgba(190,140,255,.22);
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:rgba(20,12,39,.82);
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.5),
+        0 0 70px rgba(118,55,255,.12);
+}
+
+.search-input{
+    width:100%;
+
+    border:0;
+    outline:0;
+
+    color:#fff;
+    background:transparent;
+
+    padding:21px 22px;
+
+    font-size:15px;
+
+    border-bottom:1px solid rgba(190,140,255,.10);
+}
+
+.search-results{
+    padding:8px;
+}
+
+.search-result{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:13px 14px;
+
+    border-radius:12px;
+
+    color:#b4a8c5;
+
+    font-size:11px;
+
+    transition:.2s;
+}
+
+.search-result:hover{
+    background:rgba(144,74,255,.12);
+    color:#fff;
+}
+
+.search-result small{
+    color:#665a78;
+    font-size:8px;
+    letter-spacing:1px;
+}
+
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .app{
+        display:block;
+    }
+
+    .sidebar{
+        position:fixed;
+
+        left:12px;
+        right:12px;
+        top:auto;
+        bottom:12px;
+
+        width:auto;
+        height:64px;
+
+        padding:8px 10px;
+
+        flex-direction:row;
+        align-items:center;
+
+        border-radius:20px;
+    }
+
+    .brand,
+    .nav-label,
+    .sidebar-spacer,
+    .sidebar-status,
+    .sidebar-footer{
+        display:none;
+    }
+
+    .nav{
+        width:100%;
+
+        display:grid;
+        grid-template-columns:repeat(6,1fr);
+
+        gap:3px;
+    }
+
+    .nav a,
+    .nav button{
+        justify-content:center;
+        padding:9px 2px;
+        border-radius:12px;
+    }
+
+    .nav-icon{
+        font-size:15px;
+    }
+
+    .nav a span:last-child,
+    .nav button span:last-child{
+        display:none;
+    }
+
+    main{
+        width:min(100% - 28px,720px);
+        padding-bottom:105px;
+    }
+
+    .season-card{
+        grid-template-columns:1fr;
+    }
+
+    .season-image{
+        min-height:310px;
+    }
+
+    .season-content{
+        padding:25px;
+    }
+}
+
+
+@media(max-width:560px){
+
+    main{
+        width:calc(100% - 22px);
+        padding-top:20px;
+    }
+
+    .breadcrumb{
+        font-size:8px;
+    }
+
+    .search-btn{
+        padding:9px;
+    }
+
+    .search-btn .key{
+        display:none;
+    }
+
+    .page-header{
+        padding:25px 3px 35px;
+    }
+
+    .page-header h1{
+        font-size:62px;
+        letter-spacing:-4px;
+    }
+
+    .page-header p{
+        font-size:11px;
+    }
+
+    .season-image{
+        min-height:230px;
+    }
+
+    .season-content{
+        padding:23px 20px;
+    }
+
+    .season-card h3{
+        font-size:27px;
+    }
+
+    .footer{
+        flex-direction:column;
+        gap:8px;
+    }
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto!important;
+        animation:none!important;
+        transition:none!important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     SPACE BACKGROUND
+===================================================== -->
+
+<div id="space">
+    <div id="stars"></div>
+
+    <div class="aurora a"></div>
+    <div class="aurora b"></div>
+    <div class="aurora c"></div>
+</div>
+
+
+<div class="app">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div
+            class="brand-mark"
+            id="secretTablet"
+            title="RP">
+            VC
+        </div>
+
+        <div>
+            <strong>VOID CORE</strong>
+            <small>UNIVERSO DE ROLEPLAY</small>
+        </div>
+
+    </div>
+
+
+    <div class="nav-label">
+        Navegación
+    </div>
+
+
+    <nav class="nav">
+
+        <a href="index.html">
+            <span class="nav-icon">⌂</span>
+            <span>Inicio</span>
+        </a>
+
+        <a class="active" href="seasons.html">
+            <span class="nav-icon">◈</span>
+            <span>Temporadas</span>
+        </a>
+
+        <a href="episodes.html">
+            <span class="nav-icon">◉</span>
+            <span>Episodios</span>
+        </a>
+
+        <a href="characters.html">
+            <span class="nav-icon">✦</span>
+            <span>Personajes</span>
+        </a>
+
+        <a href="lore.html">
+            <span class="nav-icon">◇</span>
+            <span>Lore</span>
+        </a>
+
+        <a href="archive.html">
+            <span class="nav-icon">▣</span>
+            <span>Archivo</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-spacer"></div>
+
+
+    <div class="sidebar-status">
+
+        <div class="status-line">
+            <span class="status-dot"></span>
+            Archivo activo
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-footer">
+        VOID CORE / 2026
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+    <div class="topbar">
+
+        <div class="breadcrumb">
+            Void Core / Temporadas
+        </div>
+
+        <button
+            class="search-btn"
+            id="openSearch">
+
+            Buscar
+
+            <span class="key">
+                CTRL K
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <div class="eyebrow">
+        Cronología del universo
+    </div>
+
+    <h1>
+        SEASONS
+    </h1>
+
+    <p>
+        Las eras que dieron forma al universo de Roleplay.
+        Cada temporada representa una etapa distinta de la
+        historia, desde los primeros acontecimientos de Genesis
+        hasta los sucesos actuales del Core.
+    </p>
+
+    <div class="header-line"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEASON HEADER
+===================================================== -->
+
+<div class="seasons-head">
+
+    <h2>
+        Temporadas actuales
+    </h2>
+
+    <span>
+        07 eras registradas
+    </span>
+
+</div>
+
+
+
+<!-- =====================================================
+     SEASON LIST
+===================================================== -->
+
+<section class="seasons">
+
+
+<!-- =====================================================
+     SEASON 01 — GENESIS
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/736x/1f/0b/fe/1f0bfec21ca6c38ba12e8ee92f33fb5b.jpg"
+            alt="Genesis">
+
+        <span class="season-number">
+            SEASON 01
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            Genesis
+        </h3>
+
+        <p class="season-description">
+            El comienzo del universo de Roleplay.
+            Los acontecimientos que establecieron las primeras
+            bases de la historia.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>01 — 31</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 02 — DARK DAYS
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/736x/33/ea/30/33ea309f0dd44831bfa79042244fb1bd.jpg"
+            alt="Dark Days">
+
+        <span class="season-number">
+            SEASON 02
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            Dark Days
+        </h3>
+
+        <p class="season-description">
+            Una nueva etapa marcada por acontecimientos
+            que cambiarían el rumbo del universo.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>32 — 49</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 03 — TITANFALL
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/1200x/c8/f5/85/c8f58549a0fde7d956c20e035f9e82dd.jpg"
+            alt="Titanfall">
+
+        <span class="season-number">
+            SEASON 03
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            Titanfall
+        </h3>
+
+        <p class="season-description">
+            La aparición y evolución de los Titans cambia
+            por completo la escala del conflicto.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>50 — 65</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 04 — ALPHA-HILLS
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/1200x/bd/f6/38/bdf638ce27e76b05152ac3ec3772b77b.jpg"
+            alt="Alpha-Hills">
+
+        <span class="season-number">
+            SEASON 04
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            Alpha-Hills
+        </h3>
+
+        <p class="season-description">
+            Una nueva etapa del universo y una serie de
+            acontecimientos que preparan el siguiente arco.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>66 — 73</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 05 — ASTRAL DAWN
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/736x/b5/84/36/b584367a4d742d3c2f4a4d3b692b06eb.jpg"
+            alt="Astral Dawn">
+
+        <span class="season-number">
+            SEASON 05
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            Astral Dawn
+        </h3>
+
+        <p class="season-description">
+            Una breve pero importante era que abre paso
+            a los acontecimientos posteriores del universo.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>74 — 76</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 06 — L0ST DAYS
+===================================================== -->
+
+<a class="season-card" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/736x/5b/c2/eb/5bc2eb6bccc1bf07c773f85b2a347c23.jpg"
+            alt="L0st Days">
+
+        <span class="season-number">
+            SEASON 06
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            ARCHIVED
+        </div>
+
+        <h3>
+            L0st Days
+        </h3>
+
+        <p class="season-description">
+            Una era marcada por pérdida, infección y
+            acontecimientos que dejaron al universo en un
+            estado completamente diferente.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>77 — 80</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Completed</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+
+<!-- =====================================================
+     SEASON 07 — DARK LORD
+===================================================== -->
+
+<a class="season-card current" href="episodes.html">
+
+    <div class="season-image">
+
+        <img
+            src="https://i.pinimg.com/736x/d2/e0/25/d2e02576fb90b83c91d09842d22334bd.jpg"
+            alt="Dark Lord">
+
+        <span class="season-number">
+            SEASON 07
+        </span>
+
+    </div>
+
+
+    <div class="season-content">
+
+        <div class="season-status">
+            CURRENT
+        </div>
+
+        <h3>
+            Dark Lord
+        </h3>
+
+        <p class="season-description">
+            La temporada actual del universo.
+            Sus acontecimientos continúan desarrollándose
+            a partir del capítulo 81.
+        </p>
+
+
+        <div class="season-info">
+
+            <div class="info-box">
+                <small>Chapters</small>
+                <strong>81 — ???</strong>
+            </div>
+
+            <div class="info-box">
+                <small>Status</small>
+                <strong>Ongoing</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <span class="season-arrow">
+        ↗
+    </span>
+
+</a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <span>
+        VOID CORE — REWORK
+    </span>
+
+    <span>
+        2026 / SISTEMA ACTIVO
+    </span>
+
+</footer>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-overlay" id="searchOverlay">
+
+    <div class="search-box">
+
+        <input
+            class="search-input"
+            id="searchInput"
+            autocomplete="off"
+            placeholder="Busca en el universo...">
+
+        <div
+            class="search-results"
+            id="searchResults">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const routes = [
+
+    [
+        "Genesis",
+        "Season 01 · Chapters 01 — 31",
+        "episodes.html"
+    ],
+
+    [
+        "Dark Days",
+        "Season 02 · Chapters 32 — 49",
+        "episodes.html"
+    ],
+
+    [
+        "Titanfall",
+        "Season 03 · Chapters 50 — 65",
+        "episodes.html"
+    ],
+
+    [
+        "Alpha-Hills",
+        "Season 04 · Chapters 66 — 73",
+        "episodes.html"
+    ],
+
+    [
+        "Astral Dawn",
+        "Season 05 · Chapters 74 — 76",
+        "episodes.html"
+    ],
+
+    [
+        "L0st Days",
+        "Season 06 · Chapters 77 — 80",
+        "episodes.html"
+    ],
+
+    [
+        "Dark Lord",
+        "Season 07 · Chapters 81 — ???",
+        "episodes.html"
+    ],
+
+    [
+        "Episodes",
+        "Explore chapters and events.",
+        "episodes.html"
+    ],
+
+    [
+        "Characters",
+        "Open the character archive.",
+        "characters.html"
+    ],
+
+    [
+        "Lore",
+        "Read the history of the universe.",
+        "lore.html"
+    ],
+
+    [
+        "Archive",
+        "Explore archived material.",
+        "archive.html"
+    ]
+
+];
+
+
+const overlay =
+    document.getElementById("searchOverlay");
+
+const input =
+    document.getElementById("searchInput");
+
+const results =
+    document.getElementById("searchResults");
+
+
+function renderResults(query=""){
+
+    const q =
+        query.trim().toLowerCase();
+
+    const filtered =
+        routes.filter(r =>
+            !q ||
+            r[0].toLowerCase().includes(q) ||
+            r[1].toLowerCase().includes(q)
+        );
+
+
+    results.innerHTML =
+        filtered.map(r =>
+
+            `<a class="search-result" href="${r[2]}">
+                <span>${r[0]}</span>
+                <small>${r[1]}</small>
+            </a>`
+
+        ).join("")
+
+        ||
+
+        `<div class="search-result">
+            <span>No se encontraron resultados</span>
+            <small>VOID CORE</small>
+        </div>`;
+}
+
+
+function openSearch(){
+
+    overlay.classList.add("open");
+
+    input.value="";
+
+    renderResults();
+
+    setTimeout(
+        ()=>input.focus(),
+        40
+    );
+}
+
+
+function closeSearch(){
+
+    overlay.classList.remove("open");
+
+}
+
+
+document
+    .getElementById("openSearch")
+    .addEventListener(
+        "click",
+        openSearch
+    );
+
+
+input.addEventListener(
+    "input",
+    ()=>renderResults(input.value)
+);
+
+
+overlay.addEventListener(
+    "click",
+    e=>{
+        if(e.target===overlay)
+            closeSearch();
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+        if(
+            (e.ctrlKey||e.metaKey) &&
+            e.key.toLowerCase()==="k"
+        ){
+
+            e.preventDefault();
+            openSearch();
+
+        }
+
+        if(e.key==="Escape")
+            closeSearch();
+
+    }
+);
+
+
+/* =========================================================
+   SECRET TABLET
+========================================================= */
+
+const secret =
+    document.getElementById("secretTablet");
+
+let clicks=0;
+let timer;
+
+
+secret.addEventListener(
+    "click",
+    ()=>{
+
+        clicks++;
+
+        clearTimeout(timer);
+
+        timer=setTimeout(
+            ()=>clicks=0,
+            2000
+        );
+
+        if(clicks===7)
+            window.location.href="tablet.html";
+
+    }
+);
+
+</script>
+
+</body>
+</html>
